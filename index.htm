@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #5f9cff, #d946ef);
+    }
+
+    .login-container {
+        width: 380px;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 40px 35px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .login-container h2 {
+        font-size: 28px;
+        margin-bottom: 25px;
+        color: #333;
+    }
+
+    .input-group {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .input-group label {
+        font-size: 14px;
+        color: #555;
+        font-weight: 600;
+    }
+
+    .input-group select,
+    .input-group input {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: none;
+        border-bottom: 2px solid #ddd;
+        outline: none;
+        font-size: 15px;
+        background: transparent;
+        transition: 0.3s;
+    }
+
+    .input-group select:focus,
+    .input-group input:focus {
+        border-bottom: 2px solid #a855f7;
+    }
+
+    .login-btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 25px;
+        background: linear-gradient(to right, #56ccf2, #bb6bd9);
+        color: white;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .login-btn:hover {
+        opacity: 0.9;
+        transform: scale(1.03);
+    }
+
+    #message {
+        margin-top: 20px;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .error {
+        color: red;
+    }
+
+    .success {
+        color: green;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <h2>Login</h2>
+
+    <form onsubmit="return loginUser()">
+        <div class="input-group">
+            <label>User Type</label>
+            <select id="userType" required>
+                <option value="">Select User</option>
+                <option value="Joseph Mupungi">Joseph Mupungi</option>
+                <option value="Other User">Other User</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Type your password" required>
+        </div>
+
+        <button type="submit" class="login-btn">LOGIN</button>
+    </form>
+
+    <div id="message"></div>
+</div>
+
+<script>
+function loginUser() {
+    const user = document.getElementById("userType").value;
+    const password = document.getElementById("password").value;
+    const message = document.getElementById("message");
+
+    const correctPassword = "Josengi@#1";
+
+    if (user === "") {
+        message.innerHTML = "Please select a user type.";
+        message.className = "error";
+        return false;
+    }
+
+    if (password === correctPassword) {
+    message.className = "success";
+    message.innerHTML = "Welcome '" + user + "'";
+
+    setTimeout(function () {
+        window.location.href = "home.htm";
+    }, 1500);
+
+    return false;
+    } else {
+        message.innerHTML = "Incorrect password!";
+        message.className = "error";
+        return false;
+    }
+}
+</script>
+
+</body>
+</html>
